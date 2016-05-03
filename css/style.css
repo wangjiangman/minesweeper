@@ -4,7 +4,7 @@ body{
     font-size: 20px; 
     font-weight: bold; 
     font-family: "微软雅黑";
-    background: grey;
+    background: #333;
 }
 #wrap{
     width: 650px; 
@@ -19,16 +19,27 @@ body{
 table{
     text-align: center;
 }
-td{
+#checkPoint1 td{
     width: 60px; 
     height: 38px; 
     background: #cdc1b4; 
-    border: 7px solid #bbada0; 
+    border: 7px solid rgba(162, 141, 5, 0.67); 
     border-radius: 15px;
     padding: 0; 
     margin: 0; 
     font-size: 15px; 
 }
-.blank {
-    background-color: #5CB325;
+#checkPoint2 td {
+    width: 60px; 
+    height: 26px; 
+    background: #cdc1b4; 
+    border: 2px solid rgba(162, 141, 5, 0.67); 
+    border-radius: 15px;
+    padding: 0; 
+    margin: 0; 
+    font-size: 15px;
+}
+
+.none {
+    display: none;
 }

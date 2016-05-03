@@ -8,30 +8,54 @@
     var blankArray = [];
     //点击的无雷节点若周围还有无雷节点保存在该数组等待轮训
     var toCheckList = [];
+    var size = parseInt(location.search.substr(1, location.search.length));
     var config = {
-        size: 9,
+        size: size,
         mineNum: 6
     };
+
     fillMine();
     initEvent();
 
     function fillMine() {
         // 初始化数据 0:无雷 1:有雷
-        /*var rawData = [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0]
-        ];*/
         function createRawData() {
-            var rawData = new Array(new Array(), new Array(), new Array(), new Array(), new Array(), new Array(), new Array(), new Array(), new Array());
-            for (var i = 0; i < config.size; i++) {
-                var row = $('<tr></tr>').appendTo("table");
-                for (var j = 0; j < config.size; j++) {
-                    rawData[i][j] = 0;
-                    $('<td></td>').appendTo(row);
-                }
+            var rawData = [];
+            if(config.size == 9) {
+                rawData = [
+                    [0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0]
+                ];
+            } else {
+                rawData = [
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                ];
+                $("#checkPoint1").addClass("none");
+                $("#checkPoint2").removeClass("none");
             }
+
             return rawData;
         }
 
@@ -100,14 +124,14 @@
         var mapArray = initMap(newData);
         //将数组的值映射到DOM上
         function initView(arr) {
-            for (var i = 0; i < arr.length; i++) {
-                for (var j = 0; j < arr[i].length; j++) {
-                    if (arr[i][j] >= config.size) {
+            for (var col = 0; col < config.size; col++) {
+                for (var row = 0; row < config.size; row++) {
+                    if (arr[col][row] >= config.size) {
                         // fill mine
-                        $('table').find('tr').eq(i).find('td').eq(j).addClass("mine").attr("data-bind", "*").attr("data-x", i).attr("data-y", j);
+                        $('table:visible').find('tr').eq(col).find('td').eq(row).addClass("mine").attr("data-bind", "*").attr("data-x", col).attr("data-y", row);
                     } else {
                         // fill number
-                        $('table').find('tr').eq(i).find('td').eq(j).addClass("num").attr("data-bind", arr[i][j]).attr("data-x", i).attr("data-y", j);
+                        $('table:visible').find('tr').eq(col).find('td').eq(row).addClass("num").attr("data-bind", arr[col][row]).attr("data-x", col).attr("data-y", row);
                     }
                 }
             }
@@ -176,7 +200,7 @@
                 markBlank($(this));
                 G_visible_num += blankArray.length;
                 for (var i = 0; i < blankArray.length; i++) {
-                    blankArray[i].addClass("blank");
+                    blankArray[i].css("background-color", "rgb(228, 161, 39)");
                 }
                 // clear blank array
                 blankArray = [];
@@ -187,7 +211,7 @@
                     $(this).html($(this).attr("data-bind"));
                 });
                 if (confirm("Congratulations! You Win!")) {
-                    window.location.reload(true);
+                    window.location.href = "./index.html";
                 }
             }
         });
@@ -196,7 +220,7 @@
                 $(this).html($(this).attr("data-bind"));
             });
             if (confirm("Bomb! Game over!")) {
-                window.location.reload(true);
+                window.location.href = "./index.html";
             }
         })
     }
