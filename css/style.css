@@ -20,23 +20,25 @@ table{
     text-align: center;
 }
 #checkPoint1 td{
-    width: 60px; 
-    height: 38px; 
-    background: #cdc1b4; 
-    border: 7px solid rgba(162, 141, 5, 0.67); 
-    border-radius: 15px;
-    padding: 0; 
-    margin: 0; 
+    width: 69px;
+    height: 50px;
+    background: #cdc1b4;
+    border: 2px solid rgba(148, 117, 63, 0.67);
+    box-shadow: 4px 4px 6px #A74016;
+    border-radius: 12px;
+    padding: 0;
+    margin: 0;
     font-size: 15px; 
 }
 #checkPoint2 td {
-    width: 60px; 
-    height: 26px; 
-    background: #cdc1b4; 
-    border: 2px solid rgba(162, 141, 5, 0.67); 
-    border-radius: 15px;
-    padding: 0; 
-    margin: 0; 
+    width: 60px;
+    height: 26px;
+    background: #cdc1b4;
+    border: 2px solid rgba(162, 141, 5, 0.67);
+    box-shadow: 2px 2px 2px #7D6129;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
     font-size: 15px;
 }
 
